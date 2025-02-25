@@ -7,6 +7,15 @@ sql:
     gen:
       go:
         emit_json_tags: true
-        out: "./internal/store/pgstore"
+        out: "."
         package: "pgstore"
-        sql_package: "github.com/jackc/pgx/v4"
+        sql_package: "pgx/v5"
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+          - db_type: "timestamptz"
+            go_type:
+              import: "time"
+              type: "Time"
